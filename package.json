@@ -1,7 +1,6 @@
 {
   "name": "savvy",
   "version": "0.0.1",
-  "description": "Entity-Component-based personal information manager",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
