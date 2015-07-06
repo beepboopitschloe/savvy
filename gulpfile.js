@@ -1,28 +1,27 @@
 var gulp = require('gulp'),
+	watch = require('gulp-watch'),
 	run = require('gulp-run'),
-	copy = require('gulp-copy'),
-	babel = require('gulp-babel');
+	webpack = require('webpack'),
+	webpackConfig = require('./webpack.config');
 
-gulp.task('transpile', function() {
-	return gulp.src('src/**/*.js')
-			.pipe(babel())
-			.pipe(gulp.dest('build'));
+gulp.task('build-js', function(done) {
+	return webpack(webpackConfig, function(err, stats) {
+		if (err) throw err;
+
+		done();
+	});
 });
 
-gulp.task('copy-package', function() {
-	return gulp.src('package.json')
-			.pipe(copy('build'));
-});
-
-gulp.task('copy-html', function() {
-	return gulp.src('tpl/**/*.html')
-			.pipe(copy('build'));
+gulp.task('watch', function() {
+	gulp.src('src/**/*.js')
+			.pipe(watch('src/**/*.js'))
+			.pipe(gulp.task['build-js']);
 });
 
 gulp.task('run', ['build'], function() {
-	return run('electron ./build').exec();
+	return run('electron ./').exec();
 });
 
-gulp.task('build', ['transpile', 'copy-package', 'copy-html']);
-gulp.task('default', ['build']);
+gulp.task('build', ['build-js']);
+gulp.task('default', ['build', 'run']);
 
