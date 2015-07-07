@@ -1,8 +1,20 @@
 var gulp = require('gulp'),
 	watch = require('gulp-watch'),
 	run = require('gulp-run'),
+	less = require('gulp-less'),
 	webpack = require('webpack'),
+	path = require('path'),
 	webpackConfig = require('./webpack.config');
+
+gulp.task('build-css', function() {
+	return gulp.src('./less/style.less')
+		.pipe(less({
+			paths: [
+				path.join(__dirname, 'less', 'includes')
+			]
+		}))
+		.pipe(gulp.dest('build'));
+});
 
 gulp.task('build-js', function(done) {
 	return webpack(webpackConfig, function(err, stats) {
@@ -22,6 +34,6 @@ gulp.task('run', ['build'], function() {
 	return run('electron ./').exec();
 });
 
-gulp.task('build', ['build-js']);
+gulp.task('build', ['build-js', 'build-css']);
 gulp.task('default', ['build', 'run']);
 

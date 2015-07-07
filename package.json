@@ -15,6 +15,7 @@
     "gulp-babel": "^5.1.0",
     "gulp-clean": "^0.3.1",
     "gulp-copy": "0.0.2",
+    "gulp-less": "^3.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-run": "^1.6.8",
     "gulp-watch": "^4.2.4",
@@ -24,6 +25,7 @@
     "webpack": "^1.10.1"
   },
   "dependencies": {
+    "elemental": "^0.1.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3"
   }
