@@ -1,3 +1,21 @@
-<div>
-  I am the dashboard 
+<h1>Dashboard</h1>
+
+<md-input-container>
+  <label>Card Title</label>
+  <input type="text" ng-model="dashboard.newCardTitle" required>
+</md-input-container>
+<md-input-container>
+  <label>Card Body</label>
+  <input type="text" ng-model="dashboard.newCardBody" required>
+</md-input-container>
+<md-button ng-click="dashboard.createCard()">
+  Create!
+</md-button>
+
+<hr>
+
+<div ng-repeat="card in dashboard.cards">
+  <h2>{{card.title}}</h2>
+  <p>{{card.body}}</p>
+  <hr>
 </div>
