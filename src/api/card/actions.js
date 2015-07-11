@@ -4,7 +4,7 @@
  * Define Flux actions for dealing with cards.
  */
 
-import uuid from 'uuid';
+import db from './db';
 import CardStore from './store';
 
 let CardActions = {};
@@ -13,10 +13,15 @@ let CardActions = {};
  * Create a new card.
  */
 CardActions.create = function(card) {
-	card.cardId = uuid.v4();
+	return new Promise((reject, resolve) => {
+		db.post(card, (err, result) => {
+			if (err) return reject(err);
 
-	return Promise.resolve().then(() => {
-		CardStore.add(card);
+			card._id = result.id;
+			CardStore.add(card);
+
+			return resolve(card);
+		});
 	});
 };
 
@@ -39,4 +44,3 @@ CardActions.delete = function(card) {
 };
 
 export default CardActions;
-

@@ -18,23 +18,11 @@ let events = {
 class Store extends EventEmitter {
 	/**
 	 * Constructor.
-	 *
-	 * @param  {string} indexBy The name of the key with which to index objects in
-	 * the this._cache. 'commentId' for comment objects, 'postId' for post objects, etc.
 	 */
-	constructor(indexBy) {
+	constructor() {
 		super();
 
-		this.indexBy = indexBy || 'id';
-
 		this._cache = {};
-	}
-
-	/**
-	 * Get the ID of an item using the indexBy property.
-	 */
-	_getId(item) {
-		return item[this.indexBy];
 	}
 
 	/**
@@ -70,18 +58,10 @@ class Store extends EventEmitter {
 		let addEventPayload = [];
 
 		_.each(items, (item) => {
-			let id = this._getId(item);
-
-			if (this._cache[id]) {
-				this.emit(events.CHANGE, item, this);
-			} else {
-				addEventPayload.push(item);
-			}
-
-			this._cache[id] = item;
+			this._cache[item._id] = item;
 		});
 
-		this.emit(events.CHANGE, addEventPayload, this);
+		this.emit(events.CHANGE, items, this);
 	}
 
 	/**
@@ -89,9 +69,7 @@ class Store extends EventEmitter {
 	 * exist, an ADD event will be fired instead.
 	 */
 	update(item) {
-		let id = this._getId(item);
-
-		this._cache[id] = item;
+		this._cache[item._id] = item;
 		this.emit(events.CHANGE, item, this);
 	}
 
@@ -99,10 +77,8 @@ class Store extends EventEmitter {
 	 * Remove an item from the store and fire a REMOVE event.
 	 */
 	remove(item) {
-		let id = this._getId(item);
-
-		if (this._cache[id]) {
-			delete this._cache[id];
+		if (this._cache[item._id]) {
+			delete this._cache[item._id];
 
 			this.emit(events.CHANGE, item, this);
 		}
