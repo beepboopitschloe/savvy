@@ -46,7 +46,9 @@ CardActions.update = function(card) {
  */
 CardActions.delete = function(card) {
 	return db.get(card._id)
-	.then(db.remove)
+	.then((doc) => {
+		return db.remove(doc);
+	})
 	.then((result) => {
 		CardStore.remove(card);
 		return card;
