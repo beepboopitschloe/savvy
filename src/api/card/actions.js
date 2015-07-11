@@ -29,8 +29,15 @@ CardActions.create = function(card) {
  * Update an existing card.
  */
 CardActions.update = function(card) {
-	return Promise.resolve().then(() => {
+	return db.get(card._id)
+	.then((doc) => {
+		_.extend(doc, card);
+		return db.put(doc);
+	})
+	.then((result) => {
 		CardStore.update(card);
+
+		return card;
 	});
 };
 
@@ -38,8 +45,11 @@ CardActions.update = function(card) {
  * Delete a card.
  */
 CardActions.delete = function(card) {
-	return Promise.resolve().then(() => {
+	return db.get(card._id)
+	.then(db.remove)
+	.then((result) => {
 		CardStore.remove(card);
+		return card;
 	});
 };
 
