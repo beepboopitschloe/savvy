@@ -13,7 +13,7 @@ let CardActions = {};
  * Create a new card.
  */
 CardActions.create = function(card) {
-	return new Promise((reject, resolve) => {
+	return new Promise((resolve, reject) => {
 		db.post(card, (err, result) => {
 			if (err) return reject(err);
 
