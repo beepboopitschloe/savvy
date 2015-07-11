@@ -3,11 +3,17 @@
 		<title>Hello World</title>
 
 		<script src="build/bundle.js"></script>
+		<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
 		<link rel="stylesheet" href="build/style.css">
 	</head>
 	<body>
-		<section id="app-root">
-			<!-- content is injected here -->
-		</section>
+		<sv-header></sv-header>
+		<md-content layout-padding>
+			<div class="content" layout="row">
+				<ui-view flex>
+					<!-- content is injected here -->
+				</ui-view>
+			</div>
+		</md-content>
 	</body>
 </html>

@@ -28,6 +28,12 @@ gulp.task('watch', function() {
 	gulp.src('src/**/*.js')
 			.pipe(watch('src/**/*.js'))
 			.pipe(gulp.task['build-js']);
+
+	gulp.src('less/**/*.less')
+			.pipe(watch('less/**/*.less'))
+			.pipe(gulp.task['build-css']);
+
+	gulp.task.run();
 });
 
 gulp.task('run', ['build'], function() {
@@ -36,4 +42,3 @@ gulp.task('run', ['build'], function() {
 
 gulp.task('build', ['build-js', 'build-css']);
 gulp.task('default', ['build', 'run']);
-

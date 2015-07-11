@@ -19,14 +19,19 @@
     "gulp-rename": "^1.2.2",
     "gulp-run": "^1.6.8",
     "gulp-watch": "^4.2.4",
-    "jsx-loader": "^0.13.2",
     "node-libs-browser": "^0.5.2",
-    "react": "^0.13.3",
+    "raw-loader": "^0.5.1",
     "webpack": "^1.10.1"
   },
   "dependencies": {
-    "elemental": "^0.1.1",
-    "react": "^0.13.3",
-    "react-router": "^0.13.3"
+    "angular": "^1.4.2",
+    "angular-animate": "^1.4.2",
+    "angular-aria": "^1.4.2",
+    "angular-material": "^0.10.0",
+    "angular-ui-router": "^0.2.15",
+    "lodash": "^3.10.0",
+    "pouchdb": "^3.6.0",
+    "ui-router": "0.0.1",
+    "uuid": "^2.0.1"
   }
 }
