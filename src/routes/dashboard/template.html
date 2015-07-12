@@ -12,10 +12,4 @@
   Create!
 </md-button>
 
-<hr>
-
-<div ng-repeat="card in dashboard.cards">
-  <h2>{{card.title}}</h2>
-  <p>{{card.body}}</p>
-  <hr>
-</div>
+<card-list cards="dashboard.cards"></card-list>

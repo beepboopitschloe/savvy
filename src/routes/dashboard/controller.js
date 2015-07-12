@@ -30,6 +30,14 @@ class DashboardController {
     Card.actions.create(card);
   }
 
+  saveCard(card) {
+    Card.actions.update(card);
+  }
+
+  deleteCard(card) {
+    Card.actions.delete(card); 
+  }
+
   handleCardChange(cards) {
     console.info('got new cards', cards);
 
