@@ -155,22 +155,41 @@ a ComponentType.
 #### schema
 
 - _id {string} PouchDB unique ID.
-- fields {Array} Array of field instances.
+- fields {Array} Array of Field instances.
+- behaviours {Array} Array of Behaviour instances.
 
 ### FieldType
 
-A class of field that is available to be attached to ComponentTypes.
+A class of Field that is available to be attached to ComponentTypes.
+
+#### schema
+
+- _id {string} PouchDB unique ID.
+- htmlInputType {string} One of input_text, input_number, textarea, checkbox,
+  select, or date.
 
 ### Field
 
-A reusable piece of a component that is used to enter and display data, such as
-an input, textarea, checkbox, etc. Instantiated from a FieldType.
+A piece of a component that is used to enter and display data, such as an input,
+textarea, checkbox, etc. Instantiated from a FieldType. Currently the logic will
+be defined at the application level, hopefully to be opened up to an Atom-like
+package system at some point.
 
 #### schema
 
 - _id {string} PouchDB unique ID.
 - type {FieldType} ID of the FieldType parent class.
 - value {any} The current value of the field.
+
+### BehaviourType
+
+A class of Behaviour that is available to be attached to ComponentTypes.
+Implementation details TBD.
+
+### Behaviour
+
+A logical behaviour for a component, such as "alert user on with X message on Y
+date". Implementation details TBD.
 
 ## roadmap
 
