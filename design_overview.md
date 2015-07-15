@@ -61,11 +61,21 @@ Dislike:
 
 Like:
 
-- closest thing to the modular structure I'm envisioning
+- super modular
 
 Dislike:
 
-- just not *quite* there
+- feels like a note-taking application
+
+### Podio
+
+Like:
+
+- highly configurable in a way very similar to what I'm envisioning
+
+Dislike:
+
+- slow, inefficient workflow
 
 ## what makes savvy different
 
@@ -165,8 +175,10 @@ A class of Field that is available to be attached to ComponentTypes.
 #### schema
 
 - _id {string} PouchDB unique ID.
-- htmlInputType {string} One of input_text, input_number, textarea, checkbox,
-  select, or date.
+- inputType {string} One of text, number, textarea, checkbox,
+  select, date, card, component, componentType.
+- inputOptions {json} Options for the input. eg, this is where the options for
+                      a <select> would go, or the min/max fields for a number.
 
 ### Field
 
@@ -178,24 +190,63 @@ package system at some point.
 #### schema
 
 - _id {string} PouchDB unique ID.
+- name {string} The name of the field.
 - type {FieldType} ID of the FieldType parent class.
 - value {any} The current value of the field.
 
 ### BehaviourType
 
 A class of Behaviour that is available to be attached to ComponentTypes.
-Implementation details TBD.
+Contains Javascript code run in a sandboxed environment. Implementation details
+TBD.
+
+- _id {string} PouchDB unique ID.
+- name {string} Name of the behaviour type.
+- code {string} Javascript code to execute.
 
 ### Behaviour
 
 A logical behaviour for a component, such as "alert user on with X message on Y
-date". Implementation details TBD.
+date". Instantiated from a BehaviourType. Implementation details TBD.
 
-## roadmap
+- _id {string} PouchDB unique ID.
+- type {string} ID of the BehaviourType class.
+- data {json} Persistent state of the behaviour.
 
-### 0.0.1
+## application structure
+
+The grand vision is similar to Atom, in that the core module is essentially just
+a runtime for other packages. A package can contain different components,
+component sets, behaviours, and possibly fields for use within the application.
+It is defined via a Podio-like UI.
+
+## roadmap for savvy (core)
+
+### 0.1.0
 
 - create cards
-- stamp cards with components
-- manage children
+- stamp cards with hardcoded components
+- hard-coded "child" relationship type
+
+### 0.2.0
+
+- user-defined components with hard-coded field types
+- user-defined card relationships
+
+### 0.3.0
+
+- define custom behaviours
+
+### 0.4.0
+
+- user-defined component groups
+
+### 0.5.0
+
+- user accounts
+- sync to central CouchDB
+
+### 0.6.0
+
+- component package distribution
 
