@@ -18,7 +18,9 @@ class DashboardController {
     this.newCardTitle = '';
     this.newCardBody = '';
 
-    this.unsubscribe = Card.store.onChange(this.handleCardChange.bind(this));
+    this.unsubscribe = Card.service.store.onChange(
+			this.handleCardChange.bind(this)
+		);
   }
 
   createCard() {
@@ -27,15 +29,15 @@ class DashboardController {
       body: this.newCardBody
     });
 
-    Card.actions.create(card);
+    Card.service.create(card);
   }
 
   saveCard(card) {
-    Card.actions.update(card);
+    Card.service.update(card);
   }
 
   deleteCard(card) {
-    Card.actions.delete(card); 
+    Card.service.delete(card); 
   }
 
   handleCardChange(cards) {

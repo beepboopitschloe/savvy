@@ -21,7 +21,7 @@ function cardList() {
 
     link: (scope) => {
       scope.deleteCard = (card) => {
-        Card.actions.delete(card);
+        Card.service.delete(card);
       };
     }
   };
