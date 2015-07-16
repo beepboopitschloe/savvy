@@ -146,6 +146,8 @@ Basic unit of management.
 
 - _id {string} PouchDB unique ID.
 - components {Array} Array of component _ids.
+- relations {Map<string, string>} List of relations by relation name,
+	referencing the _id field of some card.
 
 ### ComponentType
 
