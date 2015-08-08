@@ -1,7 +1,8 @@
 <md-list>
   <md-list-item class="md-3-line" ng-repeat="card in cards">
-    <div class="md-list-item-text">
-      <h3>{{card.title}}</h3>
+    <div class="card-list-item md-list-item-text"
+				ng-click="openCard(card)">
+			<h3>{{card.title}}</h3>
     </div>
     <md-button class="md-warn" ng-click="deleteCard(card)">
       Delete
