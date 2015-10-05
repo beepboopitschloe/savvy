@@ -20,6 +20,10 @@ function cardList() {
     template,
 
     link: (scope) => {
+			scope.openCard = (card) => {
+
+			};
+
       scope.deleteCard = (card) => {
         Card.service.delete(card);
       };
