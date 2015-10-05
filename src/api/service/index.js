@@ -8,8 +8,15 @@ import PouchDB from 'pouchdb';
 import Store from './store';
 
 export default class Service {
-	constructor(Model) {
-		this.db = new PouchDB(Model.dbName);
+	constructor(Model = null) {
+		if (!Model || !Model.dbName) {
+			throw new Error('Service requires a model with static property dbName.');
+		}
+
+		this.db = new PouchDB(process.cwd() + '/data/' + Model.dbName);
+
+		console.log(this.db);
+
 		this.store = new Store();
 
 		// load existing docs from the database

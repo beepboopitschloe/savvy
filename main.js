@@ -1,27 +1,6 @@
-var app = require('app'),
-	BrowserWindow = require('browser-window');
+// start babel require hook
+require('babel/register');
 
-require('crash-reporter').start();
+// bootstrap dat app
+require('./process');
 
-var mainWindow = null;
-
-app.on('window-all-closed', function() {
-	if (process.platform != 'darwin') {
-		app.quit();
-	}
-});
-
-app.on('ready', function() {
-	mainWindow = new BrowserWindow({
-		width: 1024,
-		height: 768
-	});
-
-	mainWindow.loadUrl('file://' + __dirname + '/index.html');
-
-	mainWindow.openDevTools();
-
-	mainWindow.on('closed', function() {
-		mainWindow = null;
-	});
-});

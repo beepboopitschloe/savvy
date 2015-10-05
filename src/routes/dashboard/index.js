@@ -19,3 +19,7 @@ function dashboardConfig($stateProvider) {
     controllerAs: 'dashboard'
   });
 }
+
+// define child views
+require('./card-detail');
+
